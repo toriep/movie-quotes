@@ -1,12 +1,32 @@
 import React from 'react';
-import '../assets/css/app.css';
-import logo from '../assets/images/logo.svg';
+import { Route } from 'react-router-dom';
+import 'materialize-css/dist/css/materialize.min.css';
+import About from './about';
+import Home from './home';
+import List from './list';
+import MovieQuote from './movie_quote.js';
+import Nav from './nav';
+import SignIn from './sign_in';
+import SignUp from './sign_up';
+
+import { secret,people } from '../data/lists';
+
 
 const App = () => (
     <div>
-        <div className="app">
-            <img src={logo} className="logo rotate"/>
-            <h1>Welcome to React</h1>
+        <Nav/>
+        <div className="container">
+            <Route exact path ="/" component={Home} />
+            <Route exact path ="/about" component={About} />
+            <Route exact path ="/movie-quote" component={MovieQuote} />
+            <Route exact path ="/person-list" render={
+                props => <List {...props} title="List of People" list={people} />
+            } />
+            <Route exact path ="/secret-list" render=
+                {props => <List {...props} title="Secret Operative List" list={secret} />
+            } />
+            <Route exact path ="/sign-in" component={SignIn} />
+            <Route exact path ="/sign-up" component={SignUp} />
         </div>
     </div>
 );
