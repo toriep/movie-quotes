@@ -14,3 +14,13 @@ export const signUpActionCreator = (userInfo) => {
         }
     }
 }
+
+export const signInActionCreator = (userInfo) => async dispatch => {//short hand code but the same as above
+    try{
+        console.log('userInfo inside signIn action creator :', userInfo);
+        const response = await axios.post('http://api.reactprototypes.com/signin', userInfo)
+        console.log('Sign In response :', response);
+    } catch(err){
+        console.log('Sign In Error :', err);
+    }
+}

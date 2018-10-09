@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm  } from 'redux-form';
 import { renderInput } from '../helpers';
 import { connect } from 'react-redux';
-import { signUpActionCreator} from '../actions';
+import { signUpActionCreator } from '../actions';
 
 
 
