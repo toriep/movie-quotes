@@ -13,7 +13,7 @@ class SignIn extends Component {
     }
 
     render() {
-        console.log('Sign In this.props :', this.props);//see all the info the get passed from redux-form
+        // console.log('Sign In this.props :', this.props);//see all the info the get passed from redux-form
 
         const {handleSubmit} = this.props;//pulling handleSubmit function from redux-form
 
@@ -25,7 +25,7 @@ class SignIn extends Component {
                     <Field name="password" label="Password" type="password" component={renderInput} />
                     <div className="row">
                         <div className="col s12 right-align">
-                            <button className="btn orange darken-1">Sign In</button>
+                            <button className="btn orange darken-3">Sign In</button>
                         </div>
                     </div>
                 </form>

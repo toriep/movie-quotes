@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { signOutActionCreator } from '../actions';
 
 
 class Nav extends Component {
@@ -35,6 +37,9 @@ class Nav extends Component {
                         <li>
                             <Link to="/sign-up">Sign Up</Link>
                         </li>
+                        <li>
+                            <button onClick={this.props.signOutActionCreator} className="btn red darken-2">Sign Out</button>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -42,4 +47,4 @@ class Nav extends Component {
     }
 }
 
-export default Nav;
+export default connect(null,{signOutActionCreator})(Nav);
