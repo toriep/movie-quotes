@@ -3,6 +3,7 @@ import { Field, reduxForm  } from 'redux-form';
 import { renderInput } from '../helpers';
 import { connect } from 'react-redux';
 import { signUpActionCreator } from '../actions';
+import auth from '../hoc/auth';
 
 
 
@@ -15,7 +16,7 @@ class SignUp extends Component {
     render() {
         console.log('Sign Up this.props :', this.props);//see all the info the get passed from redux-form
 
-        const {handleSubmit} = this.props;//pulling handleSubmit function from redux-form
+        const {handleSubmit, authError} = this.props;//pulling handleSubmit function from redux-form
 
         return (
             <div>
@@ -26,7 +27,8 @@ class SignUp extends Component {
                     <Field name="confirmPassword" label="Confirm Password" type="password" component={renderInput} />
                     <div className="row">
                         <div className="col s12 right-align">
-                            <button className="btn orange darken-1">Sign Up</button>
+                            <button className="btn orange darken-3">Sign Up</button>
+                            <p className="red-text text-darken-2">{authError}</p>
                         </div>
                     </div>
                 </form>
@@ -58,4 +60,10 @@ SignUp = reduxForm({
     validate: validate, //functon name do not matter but key needs to be 'validate'
 })(SignUp);
 
-export default connect(null,{signUpActionCreator})(SignUp);
+function mapStateToProps(state){
+    return {
+        authError: state.user.signUpError,
+    }
+}
+
+export default connect(mapStateToProps,{signUpActionCreator})(SignUp);

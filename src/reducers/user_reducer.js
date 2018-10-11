@@ -2,6 +2,8 @@ import types from '../actions/types';
 
 const DEFAULT_STATE = {
     auth: false,//this is info about where or not we're logged in
+    signInError: '',
+    signUpError: ''
     // name: 'blah',
     // email: 'blah',
     // pwAndId: 'NO STORE HERE'
@@ -11,9 +13,13 @@ export default (state = DEFAULT_STATE, action)=>{
     switch(action.type){
         case types.SIGN_IN:
         case types.SIGN_UP:
-            return {...state, auth: true};
+            return {...state, auth: true, signInError: '', signUpError: ''};
         case types.SIGN_OUT:
             return {...state, auth: false};
+        case types.SIGN_IN_ERROR:
+            return {...state, auth: false, signInError: action.error};
+        case types.SIGN_UP_ERROR:
+            return {...state, auth: false, signUpError: action.error};
         default:
             return state;
     }

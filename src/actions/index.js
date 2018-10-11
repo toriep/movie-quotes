@@ -14,7 +14,11 @@ export const signUpActionCreator = (userInfo) => {
                 type: types.SIGN_UP
             })
         } catch(err){//anything went wrong in try, it stopped there and jumps down to catch block
-            console.log('Sign Up error :', err.message);
+            //err.response.data
+            dispatch({
+                type: types.SIGN_UP_ERROR,
+                error: 'Error creating account'
+            })
         }
     }
 }
@@ -29,7 +33,10 @@ export const signInActionCreator = (userInfo) => async dispatch => {//short hand
             type: types.SIGN_IN
         });
     } catch(err){
-        console.log('Sign In Error :', err);
+        dispatch({
+            type: types.SIGN_IN_ERROR,
+            error: 'Invalid Email and/or Password'
+        })
     }
 }
 

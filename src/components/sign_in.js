@@ -5,17 +5,17 @@ import { connect } from 'react-redux';
 import { signInActionCreator } from '../actions';
 
 
-
 class SignIn extends Component {
+
     userSignIn = (values) => {
-        console.log('User Sign In Info :', values);
+        console.log('User Sign In values :', values);
         this.props.signInActionCreator(values);
     }
 
     render() {
         // console.log('Sign In this.props :', this.props);//see all the info the get passed from redux-form
 
-        const {handleSubmit} = this.props;//pulling handleSubmit function from redux-form
+        const {handleSubmit, authError} = this.props;//pulling handleSubmit function from redux-form
 
         return (
             <div>
@@ -26,6 +26,7 @@ class SignIn extends Component {
                     <div className="row">
                         <div className="col s12 right-align">
                             <button className="btn orange darken-3">Sign In</button>
+                            <p className="red-text text-darken-2">{authError}</p>
                         </div>
                     </div>
                 </form>
@@ -54,4 +55,10 @@ SignIn = reduxForm({
     validate: validate, //functon name do not matter but key needs to be 'validate'
 })(SignIn);
 
-export default connect(null,{signInActionCreator})(SignIn);
+function mapStateToProps(state){
+    return {
+        authError: state.user.signInError//you have to use authError or whatever other name, and not 'error' because redux form already has a property named 'error'
+    }
+}
+
+export default connect(mapStateToProps,{signInActionCreator})(SignIn);
