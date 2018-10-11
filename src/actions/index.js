@@ -47,3 +47,26 @@ export const signOutActionCreator = () => {
         type: types.SIGN_OUT
     };
 }
+
+export const getMovieQuote = () => async dispatch => {
+    try{
+
+        const axiosConfig = {
+            headers: {
+                authorization: localStorage.getItem('token')
+            }
+        };
+
+        const resp = await axios.get('http://api.reactprototypes.com', axiosConfig);
+
+        console.log('Movie Quote resp :', resp);
+
+        dispatch({//whatever dispatched here goes int to the action object, which goes into a reducer
+            type: types.GET_MOVIE_QUOTE,
+            quote: resp.data.message//if you thunk, you can use any property, not just payload
+        })
+
+    } catch(err){
+        console.log('Movie Quote Error', err.message);
+    }
+}

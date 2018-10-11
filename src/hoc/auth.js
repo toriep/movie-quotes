@@ -14,7 +14,7 @@ export default (WrappedComponent)=>{//this is just a function with a class in it
 
         checkAuth(){//this function checks whether user is signed in
             if(!this.props.auth){//if user is not logged in
-                this.props.history.push('/sign-in');//locate them to somewhere else, in this case sig-in
+                this.props.history.push('/sign-in');//locate them to somewhere else, in this case sign-in
             }
         }
 
